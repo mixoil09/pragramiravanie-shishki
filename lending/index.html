@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Архитектура API: REST vs GraphQL vs gRPC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Шапка -->
+    <header class="hero">
+        <div class="container">
+            <h1>🌐 Архитектура API</h1>
+            <p class="subtitle">REST · GraphQL · gRPC</p>
+            <p class="desc">Сравнение подходов к взаимодействию клиент-серверных приложений</p>
+        </div>
+    </header>
+
+    <!-- Блок 1: 6 ограничений REST -->
+    <section class="section">
+        <div class="container">
+            <h2>📌 6 ограничений (constraints) RESTful API</h2>
+            <div class="grid-6">
+                <div class="card"><strong>1. Client‑Server</strong><br>Разделение ответственности</div>
+                <div class="card"><strong>2. Stateless</strong><br>Каждый запрос изолирован</div>
+                <div class="card"><strong>3. Cacheable</strong><br>Ответы кэшируемы</div>
+                <div class="card"><strong>4. Uniform Interface</strong><br>Единообразие интерфейса</div>
+                <div class="card"><strong>5. Layered System</strong><br>Многоуровневая архитектура</div>
+                <div class="card"><strong>6. Code‑on‑Demand</strong><br>Код по требованию (опционально)</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 2: GraphQL -->
+    <section class="section alt">
+        <div class="container">
+            <h2>⚡ GraphQL</h2>
+            <p><strong>Как работает:</strong> Клиент отправляет запрос с описанием нужных данных, сервер возвращает ровно их.</p>
+            <div class="problems">
+                <div class="problem bad">❌ Over‑fetching — лишние данные</div>
+                <div class="problem bad">❌ Under‑fetching — не хватает данных, нужно несколько запросов</div>
+                <div class="problem good">✅ GraphQL решает: один запрос → ровно то, что нужно</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 3: gRPC -->
+    <section class="section">
+        <div class="container">
+            <h2>🚀 gRPC и Protocol Buffers</h2>
+            <p><strong>Что такое:</strong> gRPC — высокопроизводительный фреймворк от Google. Protocol Buffers (protobuf) — язык описания данных, бинарный и быстрый.</p>
+            <p><strong>Почему стандарт для микросервисов на Python:</strong></p>
+            <ul class="grpc-list">
+                <li>⚡ Высокая скорость (бинарный протокол)</li>
+                <li>📦 Компактный размер сообщений</li>
+                <li>🔁 Поддержка двунаправленной потоковой передачи</li>
+                <li>🧩 Строгая типизация и генерация кода</li>
+                <li>🌍 Кросс‑языковая совместимость</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Блок 4: Версионирование и пагинация в Python -->
+    <section class="section alt">
+        <div class="container">
+            <h2>🐍 Версионирование API и пагинация в Python</h2>
+            <div class="two-col">
+                <div>
+                    <h3>Версионирование</h3>
+                    <ul>
+                        <li><strong>URL:</strong> <code>/api/v1/users</code></li>
+                        <li><strong>Query‑параметр:</strong> <code>?version=1</code></li>
+                        <li><strong>Заголовок:</strong> <code>Accept-Version: 1</code></li>
+                        <li>В FastAPI / Django — через роутинг</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Пагинация</h3>
+                    <ul>
+                        <li><strong>Page/Size:</strong> <code>?page=2&size=10</code></li>
+                        <li><strong>Limit/Offset:</strong> <code>?limit=10&offset=20</code></li>
+                        <li><strong>Cursor‑based:</strong> <code>?cursor=abc123</code></li>
+                        <li>В Python: <code>limit()</code> в SQLAlchemy, <code>Paginator</code> в Django</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Блок 5: Сравнительная таблица (главное) -->
+    <section class="section">
+        <div class="container">
+            <h2>📊 Сравнительная таблица</h2>
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Критерий</th>
+                        <th>REST</th>
+                        <th>GraphQL</th>
+                        <th>gRPC</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>⚡ Скорость</td>
+                        <td>Средняя</td>
+                        <td>Средняя/Высокая</td>
+                        <td>🔥 Очень высокая</td>
+                    </tr>
+                    <tr>
+                        <td>🔄 Гибкость</td>
+                        <td>Средняя</td>
+                        <td>🔥 Высокая</td>
+                        <td>Средняя</td>
+                    </tr>
+                    <tr>
+                        <td>🧩 Сложность реализации</td>
+                        <td>🔥 Низкая</td>
+                        <td>Средняя</td>
+                        <td>Высокая</td>
+                    </tr>
+                    <tr>
+                        <td>📦 Кэшируемость</td>
+                        <td>🔥 Отличная (HTTP‑кеш)</td>
+                        <td>Средняя</td>
+                        <td>Нет (по умолчанию)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer>
+        <div class="container">
+            <p>Проект по дисциплине «Архитектура API» · 2026</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
